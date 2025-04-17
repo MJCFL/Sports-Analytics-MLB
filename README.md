@@ -48,6 +48,34 @@ A scalable API built with FastAPI that:
 - Enables integration with external data sources
 - Supports the frontend applications with structured data
 
+## Application Screenshots
+
+### React Application
+
+#### Player Selection and Overview
+![Player Selection Interface](/screenshots/Player%20Selection%20Screen.png)
+*The main interface allows users to select any two MLB players for comparison, with a clean, intuitive design that highlights key player information. The example shows Aaron Judge and Gerrit Cole, demonstrating how the application handles both hitters and pitchers.*
+
+#### Performance Comparison
+![Performance Comparison - Radar Chart](/screenshots/Performance1.png)
+*Multi-dimensional radar charts visualize player performance across key metrics, allowing for immediate identification of strengths and weaknesses. The visualization adapts to show appropriate metrics based on player position.*
+
+![Performance Comparison - Statistics](/screenshots/Performance2.png)
+*Detailed statistical breakdown provides comprehensive numerical comparison between players, with difference calculations to highlight performance gaps.*
+
+#### Value Analysis
+![Value Analysis - Metrics](/screenshots/Value%20Analysis1.png)
+*The value analysis component shows salary efficiency, market value comparison, and surplus value calculation to identify undervalued or overvalued players.*
+
+![Trade Assessment & Projections](/screenshots/Value%20Analysis2.png)
+*The trade assessment feature calculates surplus value exchange in potential trades, helping teams evaluate whether a proposed trade is balanced. Future projections provide insight into player value over time.*
+
+### Static HTML Tool
+
+#### Player Comparison Interface
+![Static Tool Interface](/screenshots/static_tool.png)
+*The lightweight HTML tool provides similar comparison capabilities without server requirements, making it portable and easy to share.*
+
 ## Getting Started
 
 ### Running the React Application
