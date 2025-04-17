@@ -1,0 +1,36 @@
+.player-card {
+  width: 48%;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.player-card h2 {
+  color: var(--mlb-blue);
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--mlb-gold);
+  padding-bottom: 0.5rem;
+}
+
+.player-card p {
+  margin-bottom: 0.5rem;
+}
+
+.player-stats {
+  margin-top: 1.5rem;
+}
+
+.player-stats h3 {
+  color: var(--mlb-red);
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 992px) {
+  .player-card {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}

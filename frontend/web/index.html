@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLB Player Comparison Tool</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-radar"></script>
+</head>
+<body>
+    <header>
+        <h1>MLB Player Comparison Tool</h1>
+        <p>Compare players across various metrics with visual analysis</p>
+    </header>
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="filter-section">
+                <h2>Player Selection</h2>
+                
+                <div class="filter-group">
+                    <label for="position-filter">Position:</label>
+                    <select id="position-filter">
+                        <option value="all">All Positions</option>
+                        <option value="C">Catcher</option>
+                        <option value="1B">First Base</option>
+                        <option value="2B">Second Base</option>
+                        <option value="3B">Third Base</option>
+                        <option value="SS">Shortstop</option>
+                        <option value="LF">Left Field</option>
+                        <option value="CF">Center Field</option>
+                        <option value="RF">Right Field</option>
+                        <option value="DH">Designated Hitter</option>
+                        <option value="SP">Starting Pitcher</option>
+                        <option value="RP">Relief Pitcher</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="team-filter">Team:</label>
+                    <select id="team-filter">
+                        <option value="all">All Teams</option>
+                        <option value="NYY">New York Yankees</option>
+                        <option value="LAD">Los Angeles Dodgers</option>
+                        <option value="BOS">Boston Red Sox</option>
+                        <option value="CHC">Chicago Cubs</option>
+                        <option value="HOU">Houston Astros</option>
+                        <!-- More teams will be populated from data -->
+                    </select>
+                </div>
+                
+                <div class="player-select">
+                    <div class="player-select-group">
+                        <label for="player1-select">Player 1:</label>
+                        <select id="player1-select"></select>
+                    </div>
+                    
+                    <div class="player-select-group">
+                        <label for="player2-select">Player 2:</label>
+                        <select id="player2-select"></select>
+                    </div>
+                </div>
+                
+                <button id="compare-btn">Compare Players</button>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="overview">Overview</button>
+                <button class="tab-btn" data-tab="detailed">Detailed Comparison</button>
+                <button class="tab-btn" data-tab="value">Value Analysis</button>
+            </div>
+            
+            <div class="tab-content">
+                <!-- Overview Tab -->
+                <div id="overview" class="tab-pane active">
+                    <div class="player-cards">
+                        <div class="player-card" id="player1-card">
+                            <h2 id="player1-name">Player 1</h2>
+                            <div class="player-info">
+                                <p><strong>Team:</strong> <span id="player1-team"></span> | <strong>Position:</strong> <span id="player1-position"></span></p>
+                                <p><strong>Age:</strong> <span id="player1-age"></span> | <strong>Service Time:</strong> <span id="player1-service"></span> years</p>
+                                <p><strong>WAR:</strong> <span id="player1-war"></span></p>
+                                <p><strong>Salary:</strong> $<span id="player1-salary"></span>M</p>
+                            </div>
+                            <div class="player-stats" id="player1-stats">
+                                <!-- Stats will be populated dynamically -->
+                            </div>
+                        </div>
+                        
+                        <div class="player-card" id="player2-card">
+                            <h2 id="player2-name">Player 2</h2>
+                            <div class="player-info">
+                                <p><strong>Team:</strong> <span id="player2-team"></span> | <strong>Position:</strong> <span id="player2-position"></span></p>
+                                <p><strong>Age:</strong> <span id="player2-age"></span> | <strong>Service Time:</strong> <span id="player2-service"></span> years</p>
+                                <p><strong>WAR:</strong> <span id="player2-war"></span></p>
+                                <p><strong>Salary:</strong> $<span id="player2-salary"></span>M</p>
+                            </div>
+                            <div class="player-stats" id="player2-stats">
+                                <!-- Stats will be populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <h3>Performance Comparison</h3>
+                        <canvas id="radar-chart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Detailed Comparison Tab -->
+                <div id="detailed" class="tab-pane">
+                    <h2>Detailed Statistical Comparison</h2>
+                    
+                    <div class="comparison-table-container">
+                        <table id="comparison-table" class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th id="table-player1">Player 1</th>
+                                    <th id="table-player2">Player 2</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Table rows will be populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <h3>Key Metrics Comparison</h3>
+                        <canvas id="bar-chart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Value Analysis Tab -->
+                <div id="value" class="tab-pane">
+                    <h2>Player Value Analysis</h2>
+                    
+                    <div class="value-cards">
+                        <div class="value-card">
+                            <h3>Value Metrics - <span id="value-player1-name">Player 1</span></h3>
+                            <p><strong>Salary:</strong> $<span id="value-player1-salary"></span>M</p>
+                            <p><strong>Market Value:</strong> $<span id="value-player1-market"></span>M</p>
+                            <p><strong>Value Differential:</strong> $<span id="value-player1-diff"></span>M</p>
+                            <p><strong>WAR/$ Ratio:</strong> <span id="value-player1-ratio"></span> WAR per $M</p>
+                            <p><strong>Contract Years:</strong> <span id="value-player1-years"></span></p>
+                            <div class="assessment" id="value-player1-assessment">
+                                <!-- Assessment will be populated dynamically -->
+                            </div>
+                        </div>
+                        
+                        <div class="value-card">
+                            <h3>Value Metrics - <span id="value-player2-name">Player 2</span></h3>
+                            <p><strong>Salary:</strong> $<span id="value-player2-salary"></span>M</p>
+                            <p><strong>Market Value:</strong> $<span id="value-player2-market"></span>M</p>
+                            <p><strong>Value Differential:</strong> $<span id="value-player2-diff"></span>M</p>
+                            <p><strong>WAR/$ Ratio:</strong> <span id="value-player2-ratio"></span> WAR per $M</p>
+                            <p><strong>Contract Years:</strong> <span id="value-player2-years"></span></p>
+                            <div class="assessment" id="value-player2-assessment">
+                                <!-- Assessment will be populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <h3>Value Comparison</h3>
+                        <canvas id="value-chart"></canvas>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <h3>Future Projection Comparison</h3>
+                        <canvas id="projection-chart"></canvas>
+                    </div>
+                    
+                    <div class="trade-analysis">
+                        <h3>Trade Analysis</h3>
+                        <div id="trade-assessment" class="trade-assessment">
+                            <!-- Trade assessment will be populated dynamically -->
+                        </div>
+                        
+                        <h3>Additional Trade Considerations</h3>
+                        <ul id="trade-considerations">
+                            <!-- Considerations will be populated dynamically -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>MLB Player Comparison Tool | MLB Analytics Platform | 2025</p>
+    </footer>
+    
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

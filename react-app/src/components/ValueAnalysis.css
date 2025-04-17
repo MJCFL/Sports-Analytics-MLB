@@ -1,0 +1,107 @@
+.value-analysis {
+  margin-bottom: 2rem;
+}
+
+.value-cards {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.value-card {
+  width: 48%;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background-color: var(--light-bg);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.value-card h3 {
+  color: var(--mlb-blue);
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--mlb-gold);
+  padding-bottom: 0.5rem;
+}
+
+.value-card p {
+  margin-bottom: 0.5rem;
+}
+
+.assessment {
+  padding: 1rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.assessment.positive {
+  background-color: rgba(40, 167, 69, 0.2);
+  color: var(--success-color);
+}
+
+.assessment.neutral {
+  background-color: rgba(23, 162, 184, 0.2);
+  color: var(--info-color);
+}
+
+.assessment.negative {
+  background-color: rgba(220, 53, 69, 0.2);
+  color: var(--danger-color);
+}
+
+.chart-container {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.chart-container h3 {
+  color: var(--mlb-blue);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.projection-note {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: rgba(253, 184, 39, 0.2);
+  border-left: 4px solid var(--mlb-gold);
+  font-style: italic;
+}
+
+.trade-analysis {
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background-color: var(--light-bg);
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.trade-analysis h3 {
+  color: var(--mlb-blue);
+  margin-bottom: 1rem;
+}
+
+.considerations-list {
+  margin-left: 1.5rem;
+}
+
+.considerations-list li {
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 992px) {
+  .value-cards {
+    flex-direction: column;
+  }
+  
+  .value-card {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}

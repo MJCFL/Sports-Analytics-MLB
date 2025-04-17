@@ -1,0 +1,44 @@
+# Core Data Science
+numpy>=1.24.0
+pandas>=2.0.0
+scikit-learn>=1.2.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+statsmodels>=0.14.0
+pymc>=5.0.0  # For Bayesian modeling
+xgboost>=1.7.0
+lightgbm>=4.0.0
+
+# Baseball Data
+pybaseball>=2.2.0
+
+# API & Web
+fastapi>=0.95.0
+uvicorn>=0.21.0
+pydantic>=2.0.0
+httpx>=0.24.0
+python-dotenv>=1.0.0
+
+# Database
+sqlalchemy>=2.0.0
+alembic>=1.10.0
+psycopg2-binary>=2.9.0  # For PostgreSQL
+
+# Jupyter & Visualization
+jupyter>=1.0.0
+notebook>=6.5.0
+plotly>=5.14.0
+bokeh>=3.1.0
+dash>=2.9.0
+
+# Testing & Development
+pytest>=7.3.0
+black>=23.3.0
+flake8>=6.0.0
+mypy>=1.2.0
+isort>=5.12.0
+
+# Documentation
+sphinx>=6.1.0
+sphinx-rtd-theme>=1.2.0
+nbsphinx>=0.9.0

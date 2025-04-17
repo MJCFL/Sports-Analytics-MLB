@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLB Player Comparison Tool</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: #002D72;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        .player-cards {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .player-card {
+            width: 48%;
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .player-card h2 {
+            color: #002D72;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #FDB827;
+            padding-bottom: 0.5rem;
+        }
+        
+        .chart-container {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .chart-container h2 {
+            color: #002D72;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .value-analysis {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .value-analysis h2 {
+            color: #002D72;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .value-cards {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+        
+        .value-card {
+            width: 48%;
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+        }
+        
+        .value-card h3 {
+            color: #002D72;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #FDB827;
+            padding-bottom: 0.5rem;
+        }
+        
+        .trade-analysis {
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            margin-top: 1.5rem;
+        }
+        
+        .trade-analysis h3 {
+            color: #002D72;
+            margin-bottom: 1rem;
+        }
+        
+        .assessment {
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        
+        .assessment.positive {
+            background-color: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+        }
+        
+        .assessment.neutral {
+            background-color: rgba(23, 162, 184, 0.2);
+            color: #17a2b8;
+        }
+        
+        .assessment.negative {
+            background-color: rgba(220, 53, 69, 0.2);
+            color: #dc3545;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #002D72;
+            color: white;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MLB Player Comparison Tool</h1>
+        <p>Compare player performance, value, and trade potential</p>
+    </header>
+    
+    <div class="container">
+        <div class="player-cards">
+            <div class="player-card">
+                <h2>Aaron Judge</h2>
+                <p><strong>Team:</strong> NYY | <strong>Position:</strong> RF</p>
+                <p><strong>Age:</strong> 32 | <strong>Service Time:</strong> 8 years</p>
+                <p><strong>WAR:</strong> 7.2</p>
+                <p><strong>Salary:</strong> $36.5M</p>
+                
+                <h3>Batting Stats</h3>
+                <p><strong>AVG/OBP/SLG:</strong> .294/.422/.613</p>
+                <p><strong>OPS:</strong> 1.035</p>
+                <p><strong>HR:</strong> 45</p>
+                <p><strong>Exit Velocity:</strong> 95.8 mph</p>
+            </div>
+            
+            <div class="player-card">
+                <h2>Juan Soto</h2>
+                <p><strong>Team:</strong> NYY | <strong>Position:</strong> LF</p>
+                <p><strong>Age:</strong> 26 | <strong>Service Time:</strong> 6 years</p>
+                <p><strong>WAR:</strong> 6.8</p>
+                <p><strong>Salary:</strong> $31.0M</p>
+                
+                <h3>Batting Stats</h3>
+                <p><strong>AVG/OBP/SLG:</strong> .301/.435/.572</p>
+                <p><strong>OPS:</strong> 1.007</p>
+                <p><strong>HR:</strong> 38</p>
+                <p><strong>Exit Velocity:</strong> 92.3 mph</p>
+            </div>
+        </div>
+        
+        <div class="chart-container">
+            <h2>Performance Comparison</h2>
+            <canvas id="radarChart"></canvas>
+        </div>
+        
+        <div class="chart-container">
+            <h2>Key Metrics Comparison</h2>
+            <div id="barChart"></div>
+        </div>
+        
+        <div class="value-analysis">
+            <h2>Player Value Analysis</h2>
+            
+            <div class="value-cards">
+                <div class="value-card">
+                    <h3>Value Metrics - Aaron Judge</h3>
+                    <p><strong>Salary:</strong> $36.5M</p>
+                    <p><strong>Market Value:</strong> $57.6M</p>
+                    <p><strong>Value Differential:</strong> $21.1M</p>
+                    <p><strong>WAR/$ Ratio:</strong> 0.20 WAR per $M</p>
+                    <p><strong>Contract Years:</strong> 8</p>
+                    
+                    <div class="assessment positive">
+                        <strong>Assessment:</strong> Moderately undervalued
+                    </div>
+                </div>
+                
+                <div class="value-card">
+                    <h3>Value Metrics - Juan Soto</h3>
+                    <p><strong>Salary:</strong> $31.0M</p>
+                    <p><strong>Market Value:</strong> $54.4M</p>
+                    <p><strong>Value Differential:</strong> $23.4M</p>
+                    <p><strong>WAR/$ Ratio:</strong> 0.22 WAR per $M</p>
+                    <p><strong>Contract Years:</strong> 10</p>
+                    
+                    <div class="assessment positive">
+                        <strong>Assessment:</strong> Moderately undervalued
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h2>Value Comparison</h2>
+                <div id="valueChart"></div>
+            </div>
+            
+            <div class="trade-analysis">
+                <h3>Trade Analysis</h3>
+                
+                <div class="assessment neutral">
+                    <strong>Trade Assessment:</strong> This would be a relatively even trade in terms of value, with a slight advantage to the team acquiring Soto due to his younger age and slightly higher value differential.
+                </div>
+                
+                <h3>Additional Trade Considerations</h3>
+                <ul>
+                    <li>Soto is 6 years younger than Judge, which significantly affects long-term value.</li>
+                    <li>Judge has established himself as a face of the franchise, which carries intangible value.</li>
+                    <li>Both players are under long-term contracts, reducing financial flexibility.</li>
+                    <li>Judge has a higher injury risk based on his age and history.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>MLB Player Comparison Tool | MLB Analytics Platform | 2025</p>
+    </footer>
+    
+    <script>
+        // Radar Chart
+        const radarCtx = document.getElementById('radarChart').getContext('2d');
+        const radarChart = new Chart(radarCtx, {
+            type: 'radar',
+            data: {
+                labels: ['WAR', 'AVG', 'OBP', 'SLG', 'HR', 'Exit Velo'],
+                datasets: [
+                    {
+                        label: 'Aaron Judge',
+                        data: [0.72, 0.84, 0.94, 0.94, 0.90, 0.96],
+                        backgroundColor: 'rgba(0, 45, 114, 0.2)',
+                        borderColor: 'rgba(0, 45, 114, 1)',
+                        pointBackgroundColor: 'rgba(0, 45, 114, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(0, 45, 114, 1)'
+                    },
+                    {
+                        label: 'Juan Soto',
+                        data: [0.68, 0.86, 0.97, 0.88, 0.76, 0.85],
+                        backgroundColor: 'rgba(227, 25, 55, 0.2)',
+                        borderColor: 'rgba(227, 25, 55, 1)',
+                        pointBackgroundColor: 'rgba(227, 25, 55, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(227, 25, 55, 1)'
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 1
+                    }
+                }
+            }
+        });
+        
+        // Bar Chart for Key Metrics
+        const barData = [
+            {
+                x: ['WAR', 'AVG', 'OBP', 'SLG'],
+                y: [7.2, 0.294, 0.422, 0.613],
+                type: 'bar',
+                name: 'Aaron Judge',
+                marker: {
+                    color: 'rgba(0, 45, 114, 0.8)'
+                }
+            },
+            {
+                x: ['WAR', 'AVG', 'OBP', 'SLG'],
+                y: [6.8, 0.301, 0.435, 0.572],
+                type: 'bar',
+                name: 'Juan Soto',
+                marker: {
+                    color: 'rgba(227, 25, 55, 0.8)'
+                }
+            }
+        ];
+        
+        const barLayout = {
+            barmode: 'group',
+            title: 'Key Metrics Comparison',
+            yaxis: {
+                title: 'Value'
+            }
+        };
+        
+        Plotly.newPlot('barChart', barData, barLayout);
+        
+        // Value Comparison Chart
+        const valueData = [
+            {
+                x: ['Aaron Judge', 'Juan Soto'],
+                y: [36.5, 31.0],
+                type: 'bar',
+                name: 'Salary ($M)',
+                marker: {
+                    color: 'rgba(0, 45, 114, 0.8)'
+                }
+            },
+            {
+                x: ['Aaron Judge', 'Juan Soto'],
+                y: [57.6, 54.4],
+                type: 'bar',
+                name: 'Market Value ($M)',
+                marker: {
+                    color: 'rgba(227, 25, 55, 0.8)'
+                }
+            }
+        ];
+        
+        const valueLayout = {
+            barmode: 'group',
+            title: 'Salary vs. Market Value',
+            yaxis: {
+                title: 'Value (Millions $)'
+            }
+        };
+        
+        Plotly.newPlot('valueChart', valueData, valueLayout);
+    </script>
+</body>
+</html>
