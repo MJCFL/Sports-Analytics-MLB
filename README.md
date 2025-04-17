@@ -72,9 +72,21 @@ A scalable API built with FastAPI that:
 
 ### Static HTML Tool
 
-#### Player Comparison Interface
-![Static Tool Interface](/screenshots/static_tool.png)
-*The lightweight HTML tool provides similar comparison capabilities without server requirements, making it portable and easy to share.*
+#### Player Selection Interface
+![Static Tool Interface - Selection](/screenshots/static_tool1.png)
+*The static HTML tool provides a clean interface for selecting players to compare, with a simple dropdown selection system.*
+
+#### Performance Visualization
+![Static Tool Interface - Performance](/screenshots/static_tool2.png)
+*Radar charts in the static HTML tool visualize player performance metrics, allowing for quick identification of strengths and weaknesses.*
+
+#### Statistical Comparison
+![Static Tool Interface - Statistics](/screenshots/static_tool3.png)
+*Detailed statistical comparisons provide numerical context to complement the visual representations.*
+
+#### Value Analysis
+![Static Tool Interface - Value](/screenshots/static_tool4.png)
+*The value analysis component shows contract details and performance relative to salary, helping identify player value.*
 
 ## Getting Started
 
