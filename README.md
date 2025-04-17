@@ -147,6 +147,6 @@ MLB-Analytics-Platform/
 ## Contact
 
 For more information about this project, please contact:
-- [Your Name]
-- [Your Email]
-- [Your LinkedIn/GitHub]
+- Michael Campos
+- mcampos10495@gmail.com
+- [GitHub](https://github.com/MJCFL)
