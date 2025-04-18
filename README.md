@@ -144,6 +144,16 @@ MLB-Analytics-Platform/
 - Draft analysis and prospect valuation
 - Expanded pitcher analysis with advanced metrics
 
+## Known Issues & Future Development
+
+- **Mock Data Limitations**: This project currently uses simulated data for the 2024 season. While this allows for demonstrating the platform's capabilities, integrating with Statcast or other MLB data sources would provide more accurate and comprehensive analysis. This would be the next meaningful investment for a production version.
+
+- **Pitcher vs. Position Player Comparison**: The current implementation handles mixed comparisons between pitchers and position players, but the metrics aren't perfectly normalized across player types. Future updates will improve this comparison methodology.
+
+- **Performance Optimization**: Some visualizations may experience rendering delays with larger datasets. I'm working on optimizing the chart rendering process for smoother performance.
+
+- **Mobile Responsiveness**: While the application is responsive, some complex visualizations could be better optimized for very small screens. This is an ongoing area of improvement.
+
 ## Contact
 
 For more information about this project, please contact:
